@@ -21,7 +21,7 @@ void Camera::set_save_image_type(const std::string &save_image_type) {
   save_image_type_ = save_image_type;
 }
 
-void Camera::StartSavingImages(const std::filesystem::path &path) {
+void Camera::StartSavingImages(const std::experimental::filesystem::path &path) {
   save_images_ = true;
   save_path_ = path;
   SaveMetaData();
@@ -43,7 +43,7 @@ const Transform3fA &Camera::world2camera_pose() const {
   return world2camera_pose_;
 }
 
-const std::filesystem::path &Camera::save_path() const { return save_path_; }
+const std::experimental::filesystem::path &Camera::save_path() const { return save_path_; }
 
 int Camera::save_index() const { return save_index_; }
 

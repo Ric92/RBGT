@@ -5,7 +5,7 @@
 
 namespace rbgt {
 
-Body::Body(std::string name, std::filesystem::path geometry_path,
+Body::Body(std::string name, std::experimental::filesystem::path geometry_path,
            float geometry_unit_in_meter, bool geometry_counterclockwise,
            bool geometry_enable_culling, float maximum_body_diameter)
     : name_{std::move(name)},
@@ -15,7 +15,7 @@ Body::Body(std::string name, std::filesystem::path geometry_path,
       geometry_enable_culling_{geometry_enable_culling},
       maximum_body_diameter_{maximum_body_diameter} {}
 
-Body::Body(std::string name, std::filesystem::path geometry_path,
+Body::Body(std::string name, std::experimental::filesystem::path geometry_path,
            float geometry_unit_in_meter, bool geometry_counterclockwise,
            bool geometry_enable_culling, float maximum_body_diameter,
            const Transform3fA &geometry2body_pose)
@@ -32,7 +32,7 @@ Body::Body(std::string name, std::filesystem::path geometry_path,
 
 void Body::set_name(const std::string &name) { name_ = name; }
 
-void Body::set_geometry_path(const std::filesystem::path &geometry_path) {
+void Body::set_geometry_path(const std::experimental::filesystem::path &geometry_path) {
   geometry_path_ = geometry_path;
 }
 
@@ -86,7 +86,7 @@ const std::string &Body::name() const { return name_; }
 
 int Body::occlusion_mask_id() const { return occlusion_mask_id_; }
 
-const std::filesystem::path &Body::geometry_path() const {
+const std::experimental::filesystem::path &Body::geometry_path() const {
   return geometry_path_;
 }
 

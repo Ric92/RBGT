@@ -12,7 +12,7 @@
 
 #include <Eigen/Dense>
 #include <Eigen/Geometry>
-#include <filesystem>
+#include <experimental/filesystem>
 #include <fstream>
 #include <iostream>
 #include <memory>
@@ -66,9 +66,9 @@ class Model {
   // Main methods
   bool GenerateModel(const Body &body, float sphere_radius, int n_divides,
                      int n_points);
-  bool LoadModel(const std::filesystem::path &directory,
+  bool LoadModel(const std::experimental::filesystem::path &directory,
                  const std::string &name);
-  bool SaveModel(const std::filesystem::path &directory,
+  bool SaveModel(const std::experimental::filesystem::path &directory,
                  const std::string &name) const;
   bool GetClosestTemplateView(const Transform3fA &body2camera_pose,
                               const TemplateView **closest_template_view) const;

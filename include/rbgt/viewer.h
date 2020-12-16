@@ -7,7 +7,7 @@
 #include <rbgt/camera.h>
 #include <rbgt/common.h>
 
-#include <filesystem>
+#include <experimental/filesystem>
 #include <memory>
 #include <string>
 
@@ -22,13 +22,13 @@ class Viewer {
 
   // Main methods
   virtual void UpdateViewer(int save_index) = 0;
-  void StartSavingImages(const std::filesystem::path &path);
+  void StartSavingImages(const std::experimental::filesystem::path &path);
   void StopSavingImages();
 
   // Getters
   const std::string &name() const;
   std::shared_ptr<Camera> camera_ptr() const;
-  const std::filesystem::path &save_path() const;
+  const std::experimental::filesystem::path &save_path() const;
   bool display_images() const;
   bool save_images() const;
   bool initialized() const;
@@ -37,7 +37,7 @@ class Viewer {
   // Variables
   std::string name_{};
   std::shared_ptr<Camera> camera_ptr_ = nullptr;
-  std::filesystem::path save_path_{};
+  std::experimental::filesystem::path save_path_{};
   bool display_images_ = true;
   bool save_images_ = false;
   bool initialized_ = false;

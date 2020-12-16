@@ -12,7 +12,7 @@
 
 #include <Eigen/Dense>
 #include <Eigen/Geometry>
-#include <filesystem>
+#include <experimental/filesystem>
 #include <iostream>
 #include <memory>
 #include <opencv2/opencv.hpp>
@@ -82,7 +82,7 @@ class RegionModality {
 
   // Setters for general visualization settings
   void set_display_visualization(bool display_visualization);
-  void StartSavingVisualizations(const std::filesystem::path &save_path);
+  void StartSavingVisualizations(const std::experimental::filesystem::path &save_path);
   void StopSavingVisualizations();
 
   // Setters to turn on individual visualizations
@@ -224,7 +224,7 @@ class RegionModality {
   // Parameters for general visualization settings
   bool display_visualization_ = true;
   bool save_visualizations_ = false;
-  std::filesystem::path save_path_;
+  std::experimental::filesystem::path save_path_;
 
   // Parameters to turn on individual visualizations
   bool visualize_lines_correspondence_ = false;

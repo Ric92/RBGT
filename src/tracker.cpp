@@ -34,7 +34,10 @@ void Tracker::StartTracker(bool start_tracking) {
 
   for (int iteration = 0;; ++iteration) {
     if (start_tracking_) {
-      if (!StartRegionModalities()) return;
+      if (!StartRegionModalities()){
+        std::cout << "[Tracker] No region modalities" << std::endl;
+        return;
+      } 
       tracking_started_ = true;
       start_tracking_ = false;
     }

@@ -3,7 +3,7 @@
 
 #include "evaluator.h"
 
-bool Evaluator::Init(const std::filesystem::path &dataset_path,
+bool Evaluator::Init(const std::experimental::filesystem::path &dataset_path,
                      const std::vector<std::string> &body_names,
                      const std::string &sequence_name, bool use_occlusions) {
   initialized_ = false;
@@ -85,7 +85,7 @@ bool Evaluator::Evaluate() {
   return true;
 }
 
-void Evaluator::SaveResults(const std::filesystem::path &path) {
+void Evaluator::SaveResults(const std::experimental::filesystem::path &path) {
   for (int i_body = 0; i_body < body_names_.size(); ++i_body) {
     std::ofstream ofs{path / ("results_" + body_names_[i_body] + ".txt")};
     for (auto &result : results_[i_body]) {
@@ -175,7 +175,7 @@ void Evaluator::InitBodies(const std::string &body_name) {
   body_ptr_->set_geometry_path(dataset_path_ / body_name /
                                (body_name + ".obj"));
 
-  std::filesystem::path model_directory{dataset_path_ / body_name};
+  std::experimental::filesystem::path model_directory{dataset_path_ / body_name};
   std::string model_name{body_name + "_model"};
   if (!model_ptr_->LoadModel(model_directory, model_name)) {
     model_ptr_->GenerateModel(*body_ptr_, sphere_radius_, n_divides_,
@@ -336,7 +336,7 @@ void Evaluator::VisualizeAverageResults(
             << execution_time_calculate_pose_update << " us" << std::endl;
 }
 
-bool Evaluator::ReadPosesRBOTDataset(const std::filesystem::path &path,
+bool Evaluator::ReadPosesRBOTDataset(const std::experimental::filesystem::path &path,
                                      std::vector<rbgt::Transform3fA> *poses) {
   std::ifstream ifs;
   ifs.open(path.string(), std::ios::binary);

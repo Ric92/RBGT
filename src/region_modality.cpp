@@ -149,7 +149,7 @@ void RegionModality::set_display_visualization(bool display_visualization) {
 }
 
 void RegionModality::StartSavingVisualizations(
-    const std::filesystem::path &save_path) {
+    const std::experimental::filesystem::path &save_path) {
   save_visualizations_ = true;
   save_path_ = save_path;
 }

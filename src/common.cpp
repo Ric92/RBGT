@@ -69,7 +69,7 @@ void ReadValueFromFile(std::ifstream &ifs, Intrinsics *value) {
   std::getline(ifs, parsed);
 }
 
-void ReadValueFromFile(std::ifstream &ifs, std::filesystem::path *value) {
+void ReadValueFromFile(std::ifstream &ifs, std::experimental::filesystem::path *value) {
   std::string parsed;
   std::getline(ifs, parsed);
   std::getline(ifs, parsed, '\t');
@@ -124,7 +124,7 @@ void WriteValueToFile(std::ofstream &ofs, const std::string &name,
 }
 
 void WriteValueToFile(std::ofstream &ofs, const std::string &name,
-                      const std::filesystem::path &value) {
+                      const std::experimental::filesystem::path &value) {
   ofs << name << std::endl;
   ofs << value.string() << "\t" << std::endl;
 }

@@ -8,7 +8,7 @@
 
 #include <Eigen/Dense>
 #include <Eigen/Geometry>
-#include <filesystem>
+#include <experimental/filesystem>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -20,17 +20,17 @@ namespace rbgt {
 class Body {
  public:
   // Constructors
-  Body(std::string name, std::filesystem::path geometry_path,
+  Body(std::string name, std::experimental::filesystem::path geometry_path,
        float geometry_unit_in_meter, bool geometry_counterclockwise,
        bool geometry_enable_culling, float maximum_body_diameter);
-  Body(std::string name, std::filesystem::path geometry_path,
+  Body(std::string name, std::experimental::filesystem::path geometry_path,
        float geometry_unit_in_meter, bool geometry_counterclockwise,
        bool geometry_enable_culling, float maximum_body_diameter,
        const Transform3fA &geometry2body_pose);
 
   // Geometry setters
   void set_name(const std::string &name);
-  void set_geometry_path(const std::filesystem::path &geometry_path);
+  void set_geometry_path(const std::experimental::filesystem::path &geometry_path);
   void set_geometry_unit_in_meter(float geometry_unit_in_meter);
   void set_geometry_counterclockwise(bool geometry_counterclockwise);
   void set_geometry_enable_culling(bool geometry_enable_culling);
@@ -44,7 +44,7 @@ class Body {
 
   // Geometry getters
   const std::string &name() const;
-  const std::filesystem::path &geometry_path() const;
+  const std::experimental::filesystem::path &geometry_path() const;
   float geometry_unit_in_meter() const;
   bool geometry_counterclockwise() const;
   bool geometry_enable_culling() const;
@@ -61,7 +61,7 @@ class Body {
  private:
   // Geometry data
   std::string name_{};
-  std::filesystem::path geometry_path_{};
+  std::experimental::filesystem::path geometry_path_{};
   float geometry_unit_in_meter_ = 1.0f;
   bool geometry_counterclockwise_ = true;
   bool geometry_enable_culling_ = true;

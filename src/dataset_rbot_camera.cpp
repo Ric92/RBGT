@@ -6,7 +6,7 @@
 namespace rbgt {
 
 bool DatasetRBOTCamera::Init(const std::string &name,
-                             const std::filesystem::path &dataset_path,
+                             const std::experimental::filesystem::path &dataset_path,
                              const std::string &object_name,
                              const std::string &sequence_name, int load_index) {
   initialized_ = false;
@@ -59,7 +59,7 @@ bool DatasetRBOTCamera::set_load_index(int load_index) {
 
 bool DatasetRBOTCamera::UpdateImage() {
   if (load_index_ > max_load_index_) return false;
-  std::filesystem::path image_path{
+  std::experimental::filesystem::path image_path{
       dataset_path_ / object_name_ / "frames" /
       (sequence_name_ +
        std::string(4 - std::to_string(load_index_).length(), '0') +

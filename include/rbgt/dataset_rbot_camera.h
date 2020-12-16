@@ -7,7 +7,7 @@
 #include <rbgt/camera.h>
 #include <rbgt/common.h>
 
-#include <filesystem>
+#include <experimental/filesystem>
 #include <fstream>
 #include <iostream>
 #include <opencv2/opencv.hpp>
@@ -18,7 +18,7 @@ namespace rbgt {
 class DatasetRBOTCamera : public Camera {
  public:
   // Initialization
-  bool Init(const std::string &name, const std::filesystem::path &dataset_path,
+  bool Init(const std::string &name, const std::experimental::filesystem::path &dataset_path,
             const std::string &object_name, const std::string &sequence_name,
             int load_index);
   bool set_load_index(int load_index);
@@ -27,7 +27,7 @@ class DatasetRBOTCamera : public Camera {
   bool UpdateImage() override;
 
  private:
-  std::filesystem::path dataset_path_{};
+  std::experimental::filesystem::path dataset_path_{};
   std::string object_name_{};
   std::string sequence_name_{};
   int load_index_ = 0;

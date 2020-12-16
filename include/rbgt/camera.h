@@ -7,7 +7,7 @@
 #include <rbgt/common.h>
 
 #include <Eigen/Geometry>
-#include <filesystem>
+#include <experimental/filesystem>
 #include <fstream>
 #include <opencv2/opencv.hpp>
 
@@ -25,7 +25,7 @@ class Camera {
 
   // Main methods
   virtual bool UpdateImage() = 0;
-  void StartSavingImages(const std::filesystem::path &path);
+  void StartSavingImages(const std::experimental::filesystem::path &path);
   void StopSavingImages();
 
   // Getters
@@ -34,7 +34,7 @@ class Camera {
   const Intrinsics &intrinsics() const;
   const Transform3fA &camera2world_pose() const;
   const Transform3fA &world2camera_pose() const;
-  const std::filesystem::path &save_path() const;
+  const std::experimental::filesystem::path &save_path() const;
   int save_index() const;
   const std::string &save_image_type() const;
   bool save_images() const;
@@ -51,7 +51,7 @@ class Camera {
   Intrinsics intrinsics_{};
   Transform3fA camera2world_pose_{Transform3fA::Identity()};
   Transform3fA world2camera_pose_{Transform3fA::Identity()};
-  std::filesystem::path save_path_{};
+  std::experimental::filesystem::path save_path_{};
   int save_index_ = 0;
   std::string save_image_type_{"bmp"};
 

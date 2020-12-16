@@ -7,7 +7,7 @@
 #include <rbgt/camera.h>
 #include <rbgt/common.h>
 
-#include <filesystem>
+#include <experimental/filesystem>
 #include <fstream>
 #include <iostream>
 #include <opencv2/opencv.hpp>
@@ -18,7 +18,7 @@ namespace rbgt {
 class ImageLoaderCamera : public Camera {
  public:
   // Initialization
-  bool Init(const std::string &name, const std::filesystem::path &load_path,
+  bool Init(const std::string &name, const std::experimental::filesystem::path &load_path,
             const std::string &load_name, int load_index, int max_load_index);
   bool set_load_index(int load_index);
   void set_load_image_type(const std::string &load_image_type);
@@ -27,7 +27,7 @@ class ImageLoaderCamera : public Camera {
   bool UpdateImage() override;
 
  private:
-  std::filesystem::path load_path_{};
+  std::experimental::filesystem::path load_path_{};
   std::string load_name_{};
   int load_index_{};
   int max_load_index_{};

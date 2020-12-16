@@ -6,7 +6,7 @@
 namespace rbgt {
 
 bool ImageLoaderCamera::Init(const std::string &name,
-                             const std::filesystem::path &load_path,
+                             const std::experimental::filesystem::path &load_path,
                              const std::string &load_name, int load_index,
                              int max_load_index) {
   initialized_ = false;
@@ -17,30 +17,30 @@ bool ImageLoaderCamera::Init(const std::string &name,
   max_load_index_ = max_load_index;
 
   // Open meta data file
-  std::ifstream ifs;
-  std::string path{load_path_.string() + load_name_ + "_meta_data.txt"};
-  ifs.open(path, std::ios::binary);
-  if (!ifs.is_open() || ifs.fail()) {
-    ifs.close();
-    std::cerr << "Could not open file " << path << std::endl;
-    return false;
-  }
+  // std::ifstream ifs;
+  // std::string path{load_path_.string() + load_name_ + "_meta_data.txt"};
+  // ifs.open(path, std::ios::binary);
+  // if (!ifs.is_open() || ifs.fail()) {
+  //   ifs.close();
+  //   std::cerr << "Could not open file " << path << std::endl;
+  //   return false;
+  // }
 
-  // Check if data is of type ColorCamera
+  // // Check if data is of type ColorCamera
   std::string camera_type;
-  ReadValueFromFile(ifs, &camera_type);
-  if (camera_type != std::string{"ColorCamera"}) {
-    std::cerr << "Data is not of type ColorCamera" << std::endl;
-    return false;
-  }
-
+  // ReadValueFromFile(ifs, &camera_type);
+  // if (camera_type != std::string{"ColorCamera"}) {
+  //   std::cerr << "Data is not of type ColorCamera" << std::endl;
+  //   return false;
+  // }
   // Read meta data
-  ReadValueFromFile(ifs, &load_name_);  // just to skip those lines
-  ReadValueFromFile(ifs, &intrinsics_);
-  ReadValueFromFile(ifs, &camera2world_pose_);
-  world2camera_pose_ = camera2world_pose_.inverse();
-  ifs.close();
+  // ReadValueFromFile(ifs, &load_name_);  // just to skip those lines
+  // ReadValueFromFile(ifs, &intrinsics_);
+  // ReadValueFromFile(ifs, &camera2world_pose_);
+  // world2camera_pose_ = camera2world_pose_.inverse();
+  // ifs.close();
 
+  camera_type = std::string{"ColorCamera"};
   // Update image
   UpdateImage();
   initialized_ = true;
@@ -64,7 +64,7 @@ void ImageLoaderCamera::set_load_image_type(
 
 bool ImageLoaderCamera::UpdateImage() {
   if (load_index_ > max_load_index_) return false;
-  image_ = cv::imread(load_path_.string() + load_name_ + "_image_" +
+  image_ = cv::imread(load_path_.string() + load_name_ +
                           std::to_string(load_index_) + "." + load_image_type_,
                       cv::IMREAD_UNCHANGED);
   load_index_++;

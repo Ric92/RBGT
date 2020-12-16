@@ -79,12 +79,12 @@ bool Model::GenerateModel(const Body &body, float sphere_radius, int n_divides,
   return true;
 }
 
-bool Model::LoadModel(const std::filesystem::path &directory,
+bool Model::LoadModel(const std::experimental::filesystem::path &directory,
                       const std::string &name) {
   initialized_ = false;
 
   // Ifstream for general info data
-  std::filesystem::path info_path{directory / (name + ".txt")};
+  std::experimental::filesystem::path info_path{directory / (name + ".txt")};
   std::ifstream info_ifs;
   info_ifs.open(info_path, std::ios::in | std::ios::binary);
   if (!info_ifs.is_open() || info_ifs.fail()) {
@@ -111,7 +111,7 @@ bool Model::LoadModel(const std::filesystem::path &directory,
   ReadValueFromFile(info_ifs, &n_template_views);
 
   // Load geometry data
-  std::filesystem::path geometry_path;
+  std::experimental::filesystem::path geometry_path;
   float geometry_unit_in_meter;
   bool geometry_counterclockwise;
   bool geometry_enable_culling;
@@ -129,7 +129,7 @@ bool Model::LoadModel(const std::filesystem::path &directory,
   info_ifs.close();
 
   // Ifstream for main data
-  std::filesystem::path data_path{directory / (name + ".bin")};
+  std::experimental::filesystem::path data_path{directory / (name + ".bin")};
   std::ifstream data_ifs;
   data_ifs.open(data_path, std::ios::in | std::ios::binary);
   if (!data_ifs.is_open() || data_ifs.fail()) {
@@ -155,7 +155,7 @@ bool Model::LoadModel(const std::filesystem::path &directory,
   return true;
 }
 
-bool Model::SaveModel(const std::filesystem::path &directory,
+bool Model::SaveModel(const std::experimental::filesystem::path &directory,
                       const std::string &name) const {
   if (!initialized_) {
     std::cerr << "Model was not initialized" << std::endl;
@@ -163,7 +163,7 @@ bool Model::SaveModel(const std::filesystem::path &directory,
   }
 
   // Ofstream for general info data
-  std::filesystem::path info_path{directory / (name + ".txt")};
+  std::experimental::filesystem::path info_path{directory / (name + ".txt")};
   std::ofstream info_ofs{info_path};
 
   // Save template parameters
@@ -190,7 +190,7 @@ bool Model::SaveModel(const std::filesystem::path &directory,
   info_ofs.close();
 
   // Ofstream for main data
-  std::filesystem::path data_path{directory / (name + ".bin")};
+  std::experimental::filesystem::path data_path{directory / (name + ".bin")};
   std::ofstream data_ofs{data_path, std::ios::out | std::ios::binary};
 
   for (const auto &tv : template_views_) {
@@ -299,7 +299,7 @@ bool Model::GenerateValidContours(
                 << "Check body2camera_pose and maximum_body_diameter"
                 << std::endl;
       cv::imshow("Silhouette Image", silhouette_image);
-      cv::waitKey(0);
+      // cv::waitKey(0);
       return false;
     }
   }
